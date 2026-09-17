@@ -1,7 +1,8 @@
 package main
 
 import (
-	 "fmt"
+	"fmt"
+	"messenger/internal/router"
 	// "messenger/internal/mapping"
 	//"messenger/internal/usecase/message"
 	"net/http"
@@ -14,12 +15,13 @@ import (
 
 func main() {
 	
+	r := router.New()
+
+
+
 	//u := message.Usecase{}
 	
-
-	
-
-	//http.Handle("/",router)
+	http.Handle("/",r)
 	
 
 	fmt.Println("Starting server at port 8080")
