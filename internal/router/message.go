@@ -5,17 +5,14 @@ import (
 	"messenger/internal/mapping"
 	"messenger/internal/usecase/message"
 	"net/http"
-	"github.com/gorilla/mux"
-	"github.com/google/uuid"
 
+	"github.com/google/uuid"
+	"github.com/gorilla/mux"
 	//"encoding/json"
-	
 )
 
-func newM(base *mux.Router) *mux.Router {
-	routerMess := base.PathPrefix("/messages").Subrouter()
-	
-	u := message.Usecase{}
+func newM(base *mux.Router, u *message.Usecase) *mux.Router {
+	routerMess := base.PathPrefix("/mess").Subrouter()
 
 	routerMess.HandleFunc("/create", func(w http.ResponseWriter, r *http.Request) {
 		//authorIDstr := r.URL.Query().Get("authorID")
@@ -46,7 +43,7 @@ func newM(base *mux.Router) *mux.Router {
 			fmt.Fprint(w, err)
 			return
 		}
-		
+
 		fmt.Fprintf(w, "ok")
 
 	})
@@ -60,4 +57,3 @@ func newM(base *mux.Router) *mux.Router {
 
 	return routerMess
 }
-
